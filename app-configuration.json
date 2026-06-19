@@ -1,4 +1,8 @@
 {
-    "sdk": "MoveApps R SDK",
-    "year": 2014
+    "check_extent": true,
+    "plot_option": "total_extent",
+    "plot_geometry": "lines",
+    "mlegend": true,
+    "mycol":"magenta",
+    "width_pl":297
 }

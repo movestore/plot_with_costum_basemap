@@ -2,42 +2,105 @@
   "version": "1.2",
   "settings": [
     {
-      "id": "sdk",
-      "name": "The name of the MoveApps SDK",
-      "description": "Showcase requesting a string input from the users of your app.",
-      "defaultValue": "MoveApps SDK",
+      "id": "check_extent",
+      "name": "Quick check of extent & projection",
+      "description": "If enabled, all tracks are plotted on the custom basemap in a single map so you can verify that the extent and projection of the basemap and the tracking data match. When this is enabled all other plotting options below are ignored to speed up the computation.",
+      "defaultValue": true,
+      "type": "CHECKBOX"
+    },
+    {
+      "id": "plot_option",
+      "name": "What should be plotted",
+      "description": "Choose which maps to produce. Every option produces the overview map ('all_tracks.png': all tracks on one map at the full dataset extent); some options additionally produce one png per track, bundled in a zip. This setting is ignored when 'Quick check of extent & projection' is enabled.",
+      "defaultValue": "track_extent",
+      "type": "DROPDOWN",
+      "options": [
+        {
+          "value": "track_extent",
+          "displayText": "One map per track, each zoomed to that track's own extent (overview png + zip)"
+        },
+        {
+          "value": "total_extent",
+          "displayText": "One map per track, all using the full extent of the entire dataset (overview png + zip)"
+        },
+        {
+          "value": "both",
+          "displayText": "One map per track in both variants: own-track extent and full-dataset extent (overview png + two zips)"
+        },
+        {
+          "value": "all_tracks",
+          "displayText": "Only the overview map of all tracks (png, no per-track maps)"
+        }
+      ]
+    },
+    {
+      "id": "plot_geometry",
+      "name": "What to draw for each track",
+      "description": "Choose whether each track is drawn as lines only, or as lines with the individual locations (points) added on top. Lines are built from the tracking data with move2::mt_track_lines().",
+      "defaultValue": "lines_points",
+      "type": "DROPDOWN",
+      "options": [
+        {
+          "value": "lines_points",
+          "displayText": "Lines and points"
+        },
+        {
+          "value": "lines",
+          "displayText": "Lines only"
+        }
+      ]
+    },
+    {
+      "id": "mlegend",
+      "name": "Include legend in the overview map",
+      "description": "Whether the overview map ('all_tracks.png', all tracks on one map) should include a legend listing each track_id with its assigned colour. Has no effect on the quick-check overview (which never shows a legend) nor on the per-track maps (which use a single colour and show the track_id as the map title).",
+      "defaultValue": true,
+      "type": "CHECKBOX"
+    },
+    {
+      "id": "mycol",
+      "name": "Colour of the per-track maps",
+      "description": "Colour used to draw the tracks in the per-track maps (the maps bundled in the zip). Provide an R colour name (e.g. 'black', 'red', 'darkblue'). The list of recognised colour names is returned by grDevices::colors() (see https://stat.columbia.edu/~tzheng/files/Rcolor.pdf).",
+      "defaultValue": "black",
       "type": "STRING"
     },
     {
-      "id": "year",
-      "name": "The year",
-      "description": "Insert description for the year setting setting",
-      "defaultValue": 2022,
+      "id": "width_pl",
+      "name": "Map width (mm)",
+      "description": "Width, in millimetres, of the saved maps (overview and per-track maps). The height is derived automatically from the data aspect ratio. The quick-check overview ignores this and uses a fixed A4-landscape size.",
+      "defaultValue": 200,
       "type": "INTEGER"
     },
     {
-      "id": "auxiliary-file-a",
-      "name": "Personalization",
-      "description": "You can personalize the app by providing a file",
+      "id": "custombm",
+      "name": "Custom background map (geotiff)",
+      "description": "Upload a customized background map as a geotiff file (e.g. `.tif`/`.geotiff`). The map is expected to be in lon/lat (EPSG:4326); if it carries no/another CRS, EPSG:4326 is assigned (without reprojecting the cells).",
       "type": "USER_FILE"
     }
   ],
   "dependencies": {
     "R": [
       {
-        "name": "lubridate"
+        "name": "terra"
       },
       {
-        "remotes": "install_git('https://gitlab.com/bartk/move2.git')"
+        "name": "sf"
+      },
+      {
+        "name": "zip"
+      },
+      {
+        "name": "ggplot2"
+      },
+      {
+        "name": "terrainr"
+      },
+      {
+         "name": "move2"
       }
     ]
   },
-  "providedAppFiles": [
-    {
-      "settingId": "auxiliary-file-a",
-      "from": "data/auxiliary/user-files/provided-app-files/auxiliary-file-a/sample.txt"
-    }
-  ],
+  "providedAppFiles": [],
   "license": {
     "key": "MIT"
   },
