@@ -1,8 +1,8 @@
-# Plot With Custom Basemap
+# Plot Tracks On Custom Basemap
 
 MoveApps
 
-Github repository: *github.com/yourAccount/plot_with_costum_basemap*
+Github repository: *https://github.com/movestore/plot_on_costum_basemap*
 
 ## Description
 
