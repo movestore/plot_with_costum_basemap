@@ -19,14 +19,14 @@ rFunction = function(data, check_extent, plot_option, plot_geometry,mycol, mlege
   sf::st_write(ext_poly, appArtifactPath("tracks_extent_polygon.gpkg"), driver = "GPKG", delete_dsn = TRUE, quiet = TRUE)
   
   ## read & prepare the custom background map ##
-  custombm <- getAuxiliaryFilePath("custombm")
-  # custombm <- "./data/auxiliary/user-files/uploaded-app-files/save3.tiff"
+  custombm_pth <- getAuxiliaryFilePath("custombm")
+  # custombm_pth <- "./data/auxiliary/user-files/uploaded-app-files/save3.tiff"
   
-  if (is.null(custombm) || !file.exists(custombm)) {
+  if (is.null(custombm_pth) || !file.exists(custombm_pth)) {
     logger.fatal("No custom background map (geotiff) was provided. Please upload a geotiff file containing the background map.")
   } else {
     
-    bm <- terra::rast(custombm)
+    bm <- terra::rast(custombm_pth)
     if (!terra::same.crs(bm, "EPSG:4326")) {
       terra::crs(bm) <- "EPSG:4326"
       logger.info(paste(
