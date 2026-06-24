@@ -5,7 +5,7 @@ library("zip")
 library("ggplot2")
 library("terrainr")
 
-rFunction = function(data, check_extent, plot_option, plot_geometry,mycol, mlegend, width_pl) {
+rFunction = function(data, check_extent, plot_option, plot_geometry,mycol, mlegend, width_pl,...) {
   
   if (sf::st_crs(data) != sf::st_crs("EPSG:4326")) {
     logger.info("The tracking data are not in EPSG:4326. Reprojecting them to EPSG:4326 to match the custom basemap.")
