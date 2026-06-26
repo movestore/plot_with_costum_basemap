@@ -1,10 +1,10 @@
 {
-  "check_extent": true,
-  "plot_option": "total_extent",
-  "plot_geometry": "lines",
+  "check_extent": false,
+  "plot_option": "both",
+  "plot_geometry": "lines_points",
   "mlegend": true,
   "mycol": "magenta",
-  "width_pl": 297,
+  "width_pl": 200,
   "custombm": {
     "uploaded": [
       {

@@ -4,6 +4,7 @@ library("sf")
 library("zip")
 library("ggplot2")
 library("terrainr")
+library("ggspatial")
 
 rFunction = function(data, check_extent, plot_option, plot_geometry,mycol, mlegend, width_pl,...) {
   
@@ -69,6 +70,8 @@ rFunction = function(data, check_extent, plot_option, plot_geometry,mycol, mlege
         theme(
           panel.background = element_rect(fill = "white", color = "black"),
           legend.position = if (isTRUE(show_legend)) "right" else "none")
+      p <-  p + annotation_scale() +
+        annotation_north_arrow(aes(location="tr", which_north="true"), style = north_arrow_minimal(text_size=20))
       
       ggsave(filename = file, plot = p, width = width_mm, height = height_mm, units="mm",
              dpi = 300, limitsize = FALSE)
@@ -119,6 +122,9 @@ rFunction = function(data, check_extent, plot_option, plot_geometry,mycol, mlege
         ggplot2::theme(
           panel.background = ggplot2::element_rect(fill = "white", color = "black"),
           legend.position = "none")
+      p <-  p + annotation_scale() +
+        annotation_north_arrow(aes(location="tr", which_north="true"), style = north_arrow_minimal(text_size=20))
+      
       valid_trk_id <- make.names(trk_id)
       ggsave(filename = paste0(targetDirFiles,"/",valid_trk_id,".png"), plot = p, width = width_mm, height = height_mm, units="mm", dpi = 300, limitsize = FALSE)
     }

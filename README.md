@@ -17,11 +17,14 @@ The tracks can be plotted as lines or lines and points. For the single track map
 
 Here are the instructions for *QGIS*, but the same principal can be applied to any GIS software. The saved map has to be a tiff (geotiff) file that maintains the georeference information.
 
-1.   Run this App once to produce the output `tracks_extent_polygon.gpkg` which contains a polygon of the extent of all tracks. This can be used in QGIS to ensure that your background plot covers the entire area of the tracking data (if this is desired). Remember to unselect the layer before saving the map, so it does not show on the saved image.
-2.   ensure that the projection of the map is the one expected by the APP: *project* \> *properties* \> *crs* select "EPSG:4326".
-3.   personalize map, use many layers as you which, chose shape, size and colors for each layer. There is no limitation in number or type. You can also add basemaps
-4.   zoom in/out as you want, the area you see on GQIS, will be area exported. Rather make it a bit larger, the App will then clip the match to match the tracks.
-5.   save the map as georeferenciated image: *project* \> *import/export* \> *export map to image* \> ensure that *append georeference information* is checked, and set an appropriate resolution (this might need some trail and error, but depending on the size 200-300 dpi should mostly wok) \> *save* \> give a name and choose TIFF format from the extensions at the bottom right \> *save*
+1.   Run this App once to produce the output `tracks_extent_polygon.gpkg` which contains a polygon of the extent of all tracks. 
+
+2. Add this layer to QGIS to ensure that your background plot covers the entire area of the tracking data (if this is desired). *layer* \> *data source manager* \> *vector* and in *source* seach for `tracks_extent_polygon.gpkg` downloaded from MoveApps
+3.   ensure that the projection of the map is the one expected by the APP: *project* \> *properties* \> *crs* select "EPSG:4326".
+4.   personalize map, use many layers as you which, chose shape, size and colors for each layer. There is no limitation in number or type. You can also add basemaps
+5.   zoom in/out as you want, the area you see on GQIS, will be area exported. Rather make it a bit larger, the App will then clip the match to match the tracks.
+6.   Remember to unselect the track exent polygon layer before saving the map, so it does not show on the saved image.
+7.   save the map as georeferenciated image: *project* \> *import/export* \> *export map to image* \> ensure that *append georeference information* is checked, and set an appropriate resolution (this might need some trail and error, but depending on the size 200-300 dpi should mostly wok) \> *save* \> give a name and choose TIFF format from the extensions at the bottom right \> *save*
 
 
 ### Application scope
@@ -72,7 +75,7 @@ The App works for any (location) data. A custom background map (geotiff) coverin
 
 `Colour of the tracks in the per-track maps` (mycol): Color used to draw the tracks in the per-track maps. Provide an colour name (e.g. 'black', 'red', 'darkblue'). The list of recognised colour names can be found for example here https://r-charts.com/colors/. Default: `black`.
 
-`Map width (mm)` (width_pl): Width, in millimetres, of the saved maps. The height is derived automatically from the data aspect ratio. Default: `297` (width of A4).
+`Map width (mm)` (width_pl): Width, in millimetres, of the saved maps. The height is derived automatically from the data aspect ratio. Default: `200`.
 
 ### Changes in output data
 
@@ -83,5 +86,7 @@ The input data remains unchanged.
 **No basemap provided:** if no basemap is provided the App only produces the extent polygon.
 
 **Basemap and data do not overlap / tracks not visible on the basemap:** usually a projection or extent mismatch. Use the setting `Quick check of extent & projection` to check the basemap and the track data overlap.
+
+**Lines, points, scale bar a are very small/thin, not well visible**: try reducing the value of the setting `Map width (mm)`. 
 
 ### Null or error handling

@@ -4,7 +4,7 @@
     {
       "id": "custombm",
       "name": "Custom background map",
-      "description": "Upload a customized background map as a geotiff file (e.g. `.tif`). The map is expected to be in lon/lat (EPSG:4326)",
+      "description": "Upload a customized background map as a geotiff file (e.g. `.tif`). The map is expected to be in lon/lat (EPSG:4326). See instructions to create custom background map in the documentation of the App.",
       "type": "USER_FILE"
     },
     {
@@ -74,7 +74,7 @@
       "id": "width_pl",
       "name": "Map width (mm)",
       "description": "Width, in millimetres, of the saved maps. The height is derived automatically from the data aspect ratio.",
-      "defaultValue": 297,
+      "defaultValue": 200,
       "type": "INTEGER"
     }
   ],
@@ -85,7 +85,8 @@
       {"name": "zip"},
       {"name": "ggplot2"},
       {"name": "terrainr"},
-      {"name": "move2"}
+      {"name": "move2"},
+      {"name": "ggspatial"}
     ]
   },
   "providedAppFiles": [],
